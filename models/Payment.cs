@@ -7,7 +7,7 @@ namespace GeradorNotaFiscal.models
     public class Payment
     {
         [Key]
-        private Guid id { get; set; } = Guid.NewGuid();
+        public Guid id { get;  private set; } = Guid.NewGuid();
 
         [Required]
         [ForeignKey("Order")]

@@ -1,4 +1,6 @@
 using DotNetEnv;
+using GeradorNotaFiscal.Data;
+using Microsoft.EntityFrameworkCore;
 
 Env.Load();
 

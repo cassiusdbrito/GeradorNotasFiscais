@@ -7,7 +7,7 @@ namespace GeradorNotaFiscal.models
     public class Order
     {
         [Key]
-        public Guid id { get; set; } = Guid.NewGuid();
+        public Guid id { get; private set; } = Guid.NewGuid();
 
         [Required]
         public string clientName { get; set; }
