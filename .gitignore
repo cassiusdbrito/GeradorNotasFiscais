@@ -63,4 +63,4 @@ nunit-*.xml
 *.csproj
 
 #variáveis de ambiente
-*.env
+.env
