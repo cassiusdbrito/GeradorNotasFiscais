@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using GeradorNotaFiscal.models;
 
 namespace GeradorNotaFiscal.Data
 {
@@ -8,5 +9,10 @@ namespace GeradorNotaFiscal.Data
             : base(options)
         {
         }
+
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+
     }
 }

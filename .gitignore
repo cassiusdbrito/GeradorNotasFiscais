@@ -58,3 +58,6 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 >>>>>>> 9a710026f532f1119d4878def226948ab29cca6e
+
+#csproj
+*.csproj
