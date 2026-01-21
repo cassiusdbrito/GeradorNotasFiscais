@@ -1,6 +1,0 @@
-@GeradorNotaFiscal_HostAddress = http://localhost:5066
-
-GET {{GeradorNotaFiscal_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -46,6 +46,7 @@ ScaffoldingReadMe.txt
 *~
 CodeCoverage/
 
+
 # MSBuild Binary and Structured Log
 *.binlog
 
@@ -59,8 +60,10 @@ TestResult.xml
 nunit-*.xml
 >>>>>>> 9a710026f532f1119d4878def226948ab29cca6e
 
-#csproj
-*.csproj
+#outros
+*.csproj.user
+*.http
+*.slnx
 
 #variáveis de ambiente
 .env
