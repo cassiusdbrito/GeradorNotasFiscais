@@ -16,7 +16,7 @@ namespace GeradorNotaFiscal.models
         public string clientDocument { get; set; }
 
         [Required]
-        public DateTime orderDate { get; set; }
+        public DateTime orderDate { get; set; } = DateTime.UtcNow;
 
         [Required]
         public decimal totalValue { get; set; }
