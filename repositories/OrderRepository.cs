@@ -31,9 +31,15 @@ namespace GeradorNotaFiscal.repositories
             return await _context.Orders.FindAsync(id);
         }
 
-        public async Task<Order> saveAsync(Order order)
+        public async Task<Order> createAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return order;
+        }
+
+        public async Task<Order> updateAsync(Order order)
+        {
             await _context.SaveChangesAsync();
             return order;
         }

@@ -23,9 +23,15 @@ namespace GeradorNotaFiscal.repositories
             return await _context.Payments.FindAsync(id);
         }
 
-        public async Task<Payment> saveAsync(Payment payment)
+        public async Task<Payment> createAsync(Payment payment)
         {
             await _context.AddAsync(payment);
+            await _context.SaveChangesAsync();
+            return payment;
+        }
+
+        public async Task<Payment> updateAsync(Payment payment)
+        {
             await _context.SaveChangesAsync();
             return payment;
         }

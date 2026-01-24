@@ -25,8 +25,6 @@
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="exceptions\" />
-    <Folder Include="repositories\" />
-    <Folder Include="services\" />
   </ItemGroup>
 
 </Project>
