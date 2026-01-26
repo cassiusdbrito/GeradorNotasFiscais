@@ -1,4 +1,5 @@
 ﻿using GeradorNotaFiscal.dto.invoice;
+using GeradorNotaFiscal.exceptions;
 using GeradorNotaFiscal.interfaces.mappers;
 using GeradorNotaFiscal.interfaces.repositories;
 using GeradorNotaFiscal.interfaces.services;
@@ -18,24 +19,45 @@ namespace GeradorNotaFiscal.services
         }
         public async Task deleteInvoiceById(Guid id)
         {
+            _logger.LogInformation($"Deletando nota fiscal com id: {id}");
             await _invoiceRepository.deleteAsync(id);
         }
 
         public async Task<InvoiceDto> generateInvoice(InvoiceCreateDto createInvoiceDto)
         {
-            var newInvoice = await _invoiceRepository.saveAsync(_invoiceMapper.toEntity(createInvoiceDto));
-            return _invoiceMapper.toDto(newInvoice);
+            try {
+                _logger.LogInformation("Gerando nova nota fiscal");
+                var newInvoice = await _invoiceRepository.saveAsync(_invoiceMapper.toEntity(createInvoiceDto));
+                _logger.LogInformation($"Nota fiscal gerada com id: {newInvoice.id}");
+                return _invoiceMapper.toDto(newInvoice);
+            }
+            catch (BadRequestException ex)
+            {
+                throw new BadRequestException($"Erro ao gerar nota fiscal: {ex.Message}");
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro inesperado ao gerar nota fiscal: {ex.Message}");
+            }
+
         }
 
         public async Task<List<InvoiceDto>> getAllInvoices()
         {
+            _logger.LogInformation("Buscando todas as notas fiscais");
             var invoices = await _invoiceRepository.getAllAsync();
             return invoices.Select(invoice => _invoiceMapper.toDto(invoice)).ToList();
         }
 
         public async Task<InvoiceDto> getInvoiceById(Guid id)
         {
+            _logger.LogInformation($"Buscando nota fiscal com id: {id}");
             var invoice = await _invoiceRepository.getAsync(id);
+            if (invoice == null)
+            {
+                throw new NotFoundException($"Nota fiscal com id {id} não encontrada.");
+            }
             return _invoiceMapper.toDto(invoice);
 
         }
@@ -46,7 +68,7 @@ namespace GeradorNotaFiscal.services
             var invoice = invoices.FirstOrDefault(inv => inv.paymentId == paymentId);
             if (invoice == null)
             {
-                throw new Exception($"Nota fiscal com id de pagamento {paymentId} não encontrada.");
+                throw new NotFoundException($"Nota fiscal com id de pagamento {paymentId} não encontrada.");
             }
             return _invoiceMapper.toDto(invoice);
         }
