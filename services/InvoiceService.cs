@@ -64,6 +64,7 @@ namespace GeradorNotaFiscal.services
 
         public async Task<InvoiceDto> getInvoiceByPaymentId(Guid paymentId)
         {
+            _logger.LogInformation($"Buscando nota fiscal com id de pagamento: {paymentId}");
             var invoices = await _invoiceRepository.getAllAsync();
             var invoice = invoices.FirstOrDefault(inv => inv.paymentId == paymentId);
             if (invoice == null)
