@@ -33,6 +33,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add services to the container.
 
+builder.Services.AddDataProtection();
+
 builder.Services.AddControllers();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>

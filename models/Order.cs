@@ -1,6 +1,5 @@
 ﻿using GeradorNotaFiscal.utils.enums;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeradorNotaFiscal.models
 {
